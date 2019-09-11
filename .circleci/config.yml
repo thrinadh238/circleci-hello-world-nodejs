@@ -5,6 +5,10 @@
 version: 2
 jobs:
   build:
+    environment:
+       SERVER_IP_ADDRESS: 52.66.242.38
+       DOKKU_APP: circlecidemo
+       TRAVIS: "false"
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
@@ -13,6 +17,9 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
+    environment:
+          ## this enables colors in the output
+          TERM: xterm
 
     working_directory: ~/repo
 
@@ -35,3 +42,18 @@ jobs:
 
       # run tests!
       - run: yarn test
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run tests!
+      - run: yarn test
+
+      # Use BASH instead of DASH! see: https://ubuntuforums.org/showthread.php?t=1932504
+      # - run: apt-get install -y sudo # https://discuss.circleci.com/t/sudo-command-not-found/14208/4
+      - run: ls -al /bin/sh && sudo rm /bin/sh && sudo ln -s /bin/bash /bin/sh && ls -al /bin/sh
+      - run: echo ${SERVER_IP_ADDRESS}
+      - run: echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+      # DEPLOY "Staging" App:
+      - run: sh bin/deploy.sh
