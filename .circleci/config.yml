@@ -7,6 +7,7 @@ jobs:
   build:
     environment:
        SERVER_IP_ADDRESS: 52.66.242.38
+       USER: ubuntu
        DOKKU_APP: circlecidemo
        TRAVIS: "false"
     docker:
