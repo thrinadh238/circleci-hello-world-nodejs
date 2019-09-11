@@ -8,7 +8,7 @@ DOKKU_APP="$DOKKU_APP-$(sh $CWD/app-name.sh)"
 echo "DOKKU_APP => $DOKKU_APP"
 
 # these could all be environment variables:
-USER="root"
+USER="$USER"
 SSH="ssh $USER@$SERVER_IP_ADDRESS"
 URL="$SERVER_IP_ADDRESS:$DOKKU_APP"
 echo "URL => $URL"
