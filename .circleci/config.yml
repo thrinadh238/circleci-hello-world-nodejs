@@ -9,8 +9,8 @@ workflows:
   deploy:
     jobs:
       - eks/deploy:
-          cluster_name: cluster_name
-          region: region
+          cluster_name: ash
+          region: ap-south-1
           steps:
             - run:
                 command: |
