@@ -15,6 +15,8 @@ jobs:
           command: |
             kubectl get services
           name: Test Cluster
+      - kubernetes/create-or-update-resource:
+          resource-file-path: "containers/kube.yml"
 version: 2.1
 orbs:
   aws-eks: circleci/aws-eks@0.2.0
@@ -23,8 +25,6 @@ orbs:
 workflows:
   deployment:
     jobs:
-      - test-cluster:
-          cluster-name: thri
       - aws-ecr/build_and_push_image:
           name: build-and-push-image
           account-url: AWS_ECR_URL
@@ -49,5 +49,5 @@ workflows:
           dockerfile: ~/project/containers/nodejs/Dockerfile
           path: ~/project/containers/nginx
           tag: ${CIRCLE_SHA1}
-      - kubernetes/create-or-update-resource:
-          resource-file-path: "containers/kube.yml"
+      - test-cluster:
+          cluster-name: thri
