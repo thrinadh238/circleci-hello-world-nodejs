@@ -12,7 +12,7 @@ jobs:
           cluster-name: << parameters.cluster-name >>
       - kubernetes/install
       - kubernetes/create-or-update-resource:
-          resource-file-path: "containers/kube.yml"
+          resource-file-path: "./containers/kube.yml"
       - run:
           command: |
             kubectl get all
