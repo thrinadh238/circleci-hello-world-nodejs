@@ -1,17 +1,6 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
 version: 2.1
+
 orbs:
-  eks: tiendanube/eks@1.0.0
-workflows:
-  deploy:
-    jobs:
-      - eks/deploy:
-          cluster_name: ash
-          region: ap-south-1
-          steps:
-            - run:
-                command: |
-                  kubectl apply -f bundle.yml
-                  kubectl apply -f deployment.yml
+  aws-eks: circleci/aws-eks@0.2.0
+  aws-ecr: circleci/aws-ecr@3.1.0
+  kubernetes: circleci/kubernetes@0.3.0
