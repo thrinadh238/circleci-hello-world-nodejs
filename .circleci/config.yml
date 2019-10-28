@@ -11,9 +11,11 @@ jobs:
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: << parameters.cluster-name >>
       - kubernetes/install
+      - kubernetes/create-or-update-resource:
+          resource-file-path: "containers/kube.yml"
       - run:
           command: |
-            ls
+            kubectl get all
           name: Test Cluster
 version: 2.1
 orbs:
