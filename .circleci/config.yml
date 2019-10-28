@@ -10,9 +10,10 @@ jobs:
     steps:
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: << parameters.cluster-name >>
+      - kube-orb/install-kubectl
       - run:
           command: |
-            sudo apt-get install kubectl --classic && kubectl get services
+            kubectl get services
           name: Test Cluster
 version: 2.1
 orbs:
