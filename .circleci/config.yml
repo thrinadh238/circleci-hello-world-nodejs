@@ -16,7 +16,7 @@ jobs:
       - run:
           command: |
             kubectl get all -n poc
-          name: Test Cluster Ready
+          name: Test Cluster
 version: 2.1
 orbs:
   aws-eks: circleci/aws-eks@0.2.0
