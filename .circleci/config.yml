@@ -33,3 +33,21 @@ workflows:
           dockerfile: ~/project/containers/nginx/Dockerfile
           path: ~/project/containers/nginx
           tag: ${CIRCLE_SHA1}
+      - aws-ecr/build_and_push_image:
+          name: build-and-push-image
+          account-url: AWS_ECR_URL
+          region: AWS_DEFAULT_REGION
+          repo: python
+          dockerfile: ~/project/containers/python/Dockerfile
+          path: ~/project/containers/nginx
+          tag: ${CIRCLE_SHA1}
+      - aws-ecr/build_and_push_image:
+          name: build-and-push-image
+          account-url: AWS_ECR_URL
+          region: AWS_DEFAULT_REGION
+          repo: nodejs
+          dockerfile: ~/project/containers/nodejs/Dockerfile
+          path: ~/project/containers/nginx
+          tag: ${CIRCLE_SHA1}
+      - kubernetes/create-or-update-resource:
+          resource-file-path: "containers/kube.yml"
