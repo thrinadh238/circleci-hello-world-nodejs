@@ -12,8 +12,7 @@ jobs:
           cluster-name: << parameters.cluster-name >>
       - run:
           command: |
-            sudo apt-get install kubectl
-            kubectl get services
+            sudo apt-get install kubectl --classic && kubectl get services
           name: Test Cluster
 version: 2.1
 orbs:
