@@ -6,9 +6,8 @@ jobs:
         description: |
           Name of the EKS cluster
         type: string
-        default: my-eks-demo
+        default: ash
     steps:
-      - kubernetes/install
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: << parameters.cluster-name >>
       - run:
@@ -22,9 +21,5 @@ orbs:
 workflows:
   deployment:
     jobs:
-      - aws-eks/create-cluster:
-          cluster-name: my-eks-demo
       - test-cluster:
-          cluster-name: my-eks-demo
-          requires:
-            - aws-eks/create-cluster
+          cluster-name: ash
