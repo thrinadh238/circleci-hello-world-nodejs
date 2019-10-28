@@ -16,7 +16,7 @@ jobs:
             kubectl get services
           name: Test Cluster
       - kubernetes/create-or-update-resource:
-          resource-file-path: "containers/kube.yml"
+          resource-file-path: "~/project/containers/kube.yml"
 version: 2.1
 orbs:
   aws-eks: circleci/aws-eks@0.2.0
