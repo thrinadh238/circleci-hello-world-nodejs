@@ -49,3 +49,5 @@ workflows:
           tag: ${CIRCLE_SHA1}
       - test-cluster:
           cluster-name: thri
+          requires:
+            - aws-ecr/build_and_push_image
