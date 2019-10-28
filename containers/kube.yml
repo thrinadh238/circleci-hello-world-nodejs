@@ -166,7 +166,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: '543512271426.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest'
+        image: '543512271426.dkr.ecr.ap-south-1.amazonaws.com/nginx:${CIRCLE_SHA1}'
         imagePullPolicy: Always
         ports:
         - containerPort: 80
@@ -201,7 +201,7 @@ spec:
     spec:
       containers:
       - name: python
-        image: '543512271426.dkr.ecr.ap-south-1.amazonaws.com/python:latest'
+        image: '543512271426.dkr.ecr.ap-south-1.amazonaws.com/python:${CIRCLE_SHA1}'
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
@@ -236,7 +236,7 @@ spec:
     spec:
       containers:
       - name: nodejs
-        image: '543512271426.dkr.ecr.ap-south-1.amazonaws.com/nodejs:latest'
+        image: '543512271426.dkr.ecr.ap-south-1.amazonaws.com/nodejs:${CIRCLE_SHA1}'
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
