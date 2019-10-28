@@ -11,20 +11,6 @@ jobs:
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: << parameters.cluster-name >>
       - kubernetes/install
-      - run:
-          command: |
-            kubectl apply -f ~/project/containers/kube.yml
-          name: Test Cluster
-      - kubernetes/create-or-update-resource:
-          resource-file-path: "~/project/containers/kube.yml"
-version: 2.1
-orbs:
-  aws-eks: circleci/aws-eks@0.2.0
-  aws-ecr: circleci/aws-ecr@3.1.0
-  kubernetes: circleci/kubernetes@0.3.0
-workflows:
-  deployment:
-    jobs:
       - aws-ecr/build_and_push_image:
           name: build-and-push-nginx-image
           account-url: AWS_ECR_URL
@@ -49,5 +35,19 @@ workflows:
           dockerfile: ~/project/containers/nodejs/Dockerfile
           path: ~/project/containers/nginx
           tag: ${CIRCLE_SHA1}
+      - run:
+          command: |
+            kubectl apply -f containers/kube.yml
+          name: Test Cluster
+      - kubernetes/create-or-update-resource:
+          resource-file-path: "~/project/containers/kube.yml"
+version: 2.1
+orbs:
+  aws-eks: circleci/aws-eks@0.2.0
+  aws-ecr: circleci/aws-ecr@3.1.0
+  kubernetes: circleci/kubernetes@0.3.0
+workflows:
+  deployment:
+    jobs:
       - test-cluster:
           cluster-name: thri
