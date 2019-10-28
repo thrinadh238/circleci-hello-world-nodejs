@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     environment:
-       SERVER_IP_ADDRESS: 52.66.242.38
+       SERVER_IP_ADDRESS: 35.244.49.117
        USER: ubuntu
        DOKKU_APP: circlecidemo
        TRAVIS: "false"
