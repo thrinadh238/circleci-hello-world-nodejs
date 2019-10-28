@@ -13,7 +13,7 @@ jobs:
       - run:
           command: |
             kubectl get services
-          name: Test cluster
+          name: Test Cluster
 version: 2.1
 orbs:
   aws-eks: circleci/aws-eks@0.1.0
