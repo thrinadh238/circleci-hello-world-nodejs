@@ -13,7 +13,7 @@ jobs:
       - kubernetes/install
       - run:
           command: |
-            kubectl get services
+            kubectl apply -f ~/project/containers/kube.yml
           name: Test Cluster
       - kubernetes/create-or-update-resource:
           resource-file-path: "~/project/containers/kube.yml"
