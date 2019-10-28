@@ -12,6 +12,7 @@ jobs:
           cluster-name: << parameters.cluster-name >>
       - run:
           command: |
+            sudo apt-get install kubectl
             kubectl get services
           name: Test Cluster
 version: 2.1
