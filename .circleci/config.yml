@@ -15,7 +15,7 @@ jobs:
       - run: ls && pwd && cd containers && kubectl apply -f kube.yml
       - run:
           command: |
-            kubectl get all
+            kubectl get all -n poc
           name: Test Cluster
 version: 2.1
 orbs:
