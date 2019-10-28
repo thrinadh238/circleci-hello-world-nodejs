@@ -1,0 +1,19 @@
+ECR login
+$(aws ecr get-login --no-include-email --region ap-south-1)
+ 
+ Build:
+ cd nodejs
+ docker build -t node-web-app .
+ cd python
+ docker build -t flask-sample-one:latest .
+ 
+ Tag:
+ docker tag flask-sample-one 543512271426.dkr.ecr.ap-south-1.amazonaws.com/python:latest
+ docker tag node-web-app 543512271426.dkr.ecr.ap-south-1.amazonaws.com/nodejs:latest
+ 
+ Push:
+ docker push 543512271426.dkr.ecr.ap-south-1.amazonaws.com/python:latest
+ docker push 543512271426.dkr.ecr.ap-south-1.amazonaws.com/nodejs:latest
+
+
+kubectl apply -f kube.yml
