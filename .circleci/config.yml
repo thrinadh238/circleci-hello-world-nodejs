@@ -24,3 +24,11 @@ workflows:
     jobs:
       - test-cluster:
           cluster-name: thri
+      - aws-ecr/build_and_push_image:
+          name: build-and-push-image
+          account-url: AWS_ECR_URL
+          region: AWS_DEFAULT_REGION
+          repo: nginx
+          dockerfile: ~/project/containers/nginx/Dockerfile
+          path: ~/project/containers/nginx
+          tag: ${CIRCLE_SHA1}
