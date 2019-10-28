@@ -39,7 +39,7 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: python
           dockerfile: ~/project/containers/python/Dockerfile
-          path: ~/project/containers/python
+          path: ~/project/containers/pytho
           tag: ${CIRCLE_SHA1}
       - aws-ecr/build_and_push_image:
           name: build-and-push-nodejs-image
@@ -47,11 +47,9 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: nodejs
           dockerfile: ~/project/containers/nodejs/Dockerfile
-          path: ~/project/containers/nodejs
+          path: ~/project/containers/nodej
           tag: ${CIRCLE_SHA1}
       - test-cluster:
           cluster-name: thri
           requires:
             - build-and-push-nginx-image
-            - build-and-push-python-image
-            - build-and-push-nodejs-image
