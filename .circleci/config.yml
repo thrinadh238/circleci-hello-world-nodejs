@@ -1,3 +1,22 @@
+jobs:
+  test-cluster:
+    executor: aws-eks/python3
+    parameters:
+      cluster-name:
+        description: |
+          Name of the EKS cluster
+        type: string
+        default: thri
+    steps:
+      - checkout
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: << parameters.cluster-name >>
+      - kubernetes/install
+      - run: ls && pwd && cd containers && echo $CIRCLE_SHA1 && sed -i -e "s/latest/${CIRCLE_SHA1}/g" kube.yml && cat kube.yml && kubectl apply -f kube.yml
+      - run:
+          command: |
+            kubectl get all -n poc
+          name: Test Cluster
 version: 2.1
 orbs:
   aws-eks: circleci/aws-eks@0.2.0
@@ -30,10 +49,8 @@ workflows:
           dockerfile: ~/project/containers/nodejs/Dockerfile
           path: ~/project/containers/nodejs
           tag: ${CIRCLE_SHA1}
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build_and_push_image
-          aws-region: AWS_DEFAULT_REGION
-          family: "nginx-service"
-          cluster-name: "default"
-          container-image-name-updates: "container=nginx-service,tag=${CIRCLE_SHA1}"
+      - test-cluster:
+          cluster-name: thri
+            - build-and-push-nginx-image
+            - build-and-push-python-image
+            - build-and-push-nodejs-image
