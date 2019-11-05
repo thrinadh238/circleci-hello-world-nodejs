@@ -15,7 +15,7 @@ jobs:
           subnet-ids: 'subnet-0f326b3a78edeb6f4, subnet-0cdaba8b752b74abd'
           security-group-ids: sg-0aad8ddad4603269c,sg-087086bd834b7fde6
 workflows:
-  run-task:
+  deployment:
     jobs:
       - aws-ecr/build_and_push_image:
           name: build-and-push-nginx-image
