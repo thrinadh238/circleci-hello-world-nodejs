@@ -38,4 +38,4 @@ workflows:
           aws-region: AWS_DEFAULT_REGION
           family: "nginx-service"
           cluster-name: "default"
-          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=nginx-service,tag=${CIRCLE_SHA1}"
