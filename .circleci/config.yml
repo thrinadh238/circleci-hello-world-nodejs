@@ -14,6 +14,15 @@ jobs:
           task-definition: myapp
           subnet-ids: 'subnet-0f326b3a78edeb6f4, subnet-0cdaba8b752b74abd'
           security-group-ids: sg-0aad8ddad4603269c,sg-087086bd834b7fde6
+  run-task2:
+    docker:
+      - image: '$AWS_ECR_URL/nodejs:${CIRCLE_SHA1}'
+    steps:
+      - aws-ecs/run-task:
+          cluster: default
+          task-definition: nodejs
+          subnet-ids: 'subnet-0f326b3a78edeb6f4, subnet-0cdaba8b752b74abd'
+          security-group-ids: sg-0aad8ddad4603269c,sg-087086bd834b7fde6
 workflows:
   deployment:
     jobs:
@@ -44,5 +53,7 @@ workflows:
       - run-task:
           requires:
             - build-and-push-nginx-image
-            - build-and-push-python-image
+            - build-and-push-nodejs-image
+      - run-task2:
+          requires:
             - build-and-push-nodejs-image
