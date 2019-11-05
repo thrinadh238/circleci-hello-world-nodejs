@@ -7,7 +7,7 @@ orbs:
 jobs:
   run-task:
     docker:
-      - image: 'AWS_ECR_URL/nginx:${CIRCLE_SHA1}'
+      - image: '$AWS_ECR_URL/nginx:${CIRCLE_SHA1}'
     steps:
       - aws-ecs/run-task:
           cluster: default
