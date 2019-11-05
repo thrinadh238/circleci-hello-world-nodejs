@@ -53,7 +53,6 @@ workflows:
       - run-task:
           requires:
             - build-and-push-nginx-image
-            - build-and-push-nodejs-image
       - run-task2:
           requires:
             - build-and-push-nodejs-image
