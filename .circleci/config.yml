@@ -1,11 +1,21 @@
+
 version: 2.1
 orbs:
-  aws-eks: circleci/aws-eks@0.2.0
+  aws-cli: circleci/aws-cli@0.1.4
   aws-ecr: circleci/aws-ecr@3.1.0
   aws-ecs: circleci/aws-ecs@0.0.3
-  kubernetes: circleci/kubernetes@0.3.0
+jobs:
+  run-task:
+    docker:
+      - image: 'AWS_ECR_URL/nginx:${CIRCLE_SHA1}'
+    steps:
+      - aws-ecs/run-task:
+          cluster: default
+          task-definition: myapp
+          subnet-ids: 'subnet-0f326b3a78edeb6f4, subnet-0cdaba8b752b74abd'
+          security-group-ids: sg-0aad8ddad4603269c,sg-087086bd834b7fde6
 workflows:
-  deployment:
+  run-task:
     jobs:
       - aws-ecr/build_and_push_image:
           name: build-and-push-nginx-image
@@ -31,12 +41,8 @@ workflows:
           dockerfile: ~/project/containers/nodejs/Dockerfile
           path: ~/project/containers/nodejs
           tag: ${CIRCLE_SHA1}
-      - aws-ecs/update-service:
+      - run-task:
           requires:
             - build-and-push-nginx-image
             - build-and-push-python-image
             - build-and-push-nodejs-image
-          aws-region: AWS_DEFAULT_REGION
-          family: "nginx"
-          cluster-name: "default"
-          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
