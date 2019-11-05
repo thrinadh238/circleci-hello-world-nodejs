@@ -31,7 +31,7 @@ workflows:
           dockerfile: ~/project/containers/nodejs/Dockerfile
           path: ~/project/containers/nodejs
           tag: ${CIRCLE_SHA1}
-      - aws-ecs/deploy-service-update:
+      - aws-ecs/update-service:
           requires:
             - build-and-push-nginx-image
             - build-and-push-python-image
