@@ -37,6 +37,6 @@ workflows:
             - build-and-push-python-image
             - build-and-push-nodejs-image
           aws-region: AWS_DEFAULT_REGION
-          family: "nginx-service"
+          family: "nginx"
           cluster-name: "default"
           container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
