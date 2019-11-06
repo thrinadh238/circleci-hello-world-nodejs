@@ -17,7 +17,7 @@ workflows:
           tag: ${CIRCLE_SHA1}
       - aws-ecs/deploy-service-update:
           requires:
-            - aws-ecr/build_and_push_image
+            - build-and-push-nginx-image
           aws-region: AWS_DEFAULT_REGION
           family: nginx
           cluster-name: "default"
