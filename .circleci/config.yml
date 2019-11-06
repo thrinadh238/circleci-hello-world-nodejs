@@ -13,10 +13,10 @@ jobs:
       - aws-cli/configure:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-region: AWS_DEFAULT_REGION
-      - aws-ecs/update-service:
-          family: "nginx-service"
-          cluster-name: "default"
-          container-image-name-updates: "container=nginx-service,tag=${CIRCLE_SHA1}"
+      - run: 
+           command: |
+             aws s3 ls
+      
 workflows:
   build-and-deploy:
     jobs:
