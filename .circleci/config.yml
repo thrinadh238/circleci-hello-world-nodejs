@@ -15,8 +15,7 @@ jobs:
           aws-region: 'AWS_DEFAULT_REGION'
       - run:
           command: |
-            aws s3 ls
-      
+            aws s3 ls    
 workflows:
   build-and-deploy:
     jobs:
