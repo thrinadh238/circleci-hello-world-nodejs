@@ -1,6 +1,6 @@
 jobs:
   update-tag:
-     executor: aws-cli/default
+     executor: aws-cli/python3
      steps:
       - checkout
       - aws-cli/setup:
