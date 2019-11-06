@@ -3,26 +3,7 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@0.1.16
   aws-ecr: circleci/aws-ecr@3.1.0
-  aws-ecs: circleci/aws-ecs@0.0.22
-jobs:
-  run-task1:
-    docker:
-      - image: '$AWS_ECR_URL/nginx:${CIRCLE_SHA1}'
-    steps:
-      - aws-ecs/run-task:
-          cluster: default
-          task-definition: myapp
-          subnet-ids: 'subnet-0f326b3a78edeb6f4, subnet-0cdaba8b752b74abd'
-          security-group-ids: sg-0aad8ddad4603269c
-  run-task2:
-    docker:
-      - image: '$AWS_ECR_URL/nodejs:${CIRCLE_SHA1}'
-    steps:
-      - aws-ecs/run-task:
-          cluster: default
-          task-definition: nodejs
-          subnet-ids: 'subnet-0f326b3a78edeb6f4, subnet-0cdaba8b752b74abd'
-          security-group-ids: sg-0aad8ddad4603269c
+  aws-ecs: circleci/aws-ecs@0.0.10
 workflows:
   deployment:
     jobs:
@@ -34,25 +15,12 @@ workflows:
           dockerfile: ~/project/containers/nginx/Dockerfile
           path: ~/project/containers/nginx
           tag: ${CIRCLE_SHA1}
-      - aws-ecr/build_and_push_image:
-          name: build-and-push-python-image
-          account-url: AWS_ECR_URL
-          region: AWS_DEFAULT_REGION
-          repo: python
-          dockerfile: ~/project/containers/python/Dockerfile
-          path: ~/project/containers/python
-          tag: ${CIRCLE_SHA1}
-      - aws-ecr/build_and_push_image:
-          name: build-and-push-nodejs-image
-          account-url: AWS_ECR_URL
-          region: AWS_DEFAULT_REGION
-          repo: nodejs
-          dockerfile: ~/project/containers/nodejs/Dockerfile
-          path: ~/project/containers/nodejs
-          tag: ${CIRCLE_SHA1}
-      - run-task1:
+      - aws-ecs/deploy-service-update:
           requires:
-            - build-and-push-nginx-image
-      - run-task2:
-          requires:
-            - build-and-push-nodejs-image
+            - aws-ecr/build_and_push_image
+          aws-region: AWS_DEFAULT_REGION
+          family: nginx
+          cluster-name: "default"
+          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
+          
+ 
