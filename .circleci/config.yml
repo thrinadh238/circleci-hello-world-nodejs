@@ -21,7 +21,7 @@ workflows:
   build-and-deploy:
     jobs:
       - aws-ecr/build_and_push_image:
-          name: 
+          name: build-and-push-nginx-image
           account-url: 'AWS_ECR_URL'
           repo: 'nginx'
           dockerfile: ~/project/containers/nginx/Dockerfile
