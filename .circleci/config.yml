@@ -1,26 +1,22 @@
-
+         
 version: 2.1
 orbs:
-  aws-cli: circleci/aws-cli@0.1.16
-  aws-ecr: circleci/aws-ecr@3.1.0
+  aws-ecr: circleci/aws-ecr@0.0.4
   aws-ecs: circleci/aws-ecs@0.0.10
 workflows:
-  deployment:
+  build-and-deploy:
     jobs:
       - aws-ecr/build_and_push_image:
-          name: build-and-push-nginx-image
-          account-url: AWS_ECR_URL
-          region: AWS_DEFAULT_REGION
-          repo: nginx
+          account-url: 'AWS_ECR_URL'
+          repo: 'nginx'
           dockerfile: ~/project/containers/nginx/Dockerfile
           path: ~/project/containers/nginx
-          tag: ${CIRCLE_SHA1}
+          region: 'AWS_DEFAULT_REGION'
+          tag: '${CIRCLE_SHA1}'
       - aws-ecs/deploy-service-update:
           requires:
-            - build-and-push-nginx-image
-          aws-region: AWS_DEFAULT_REGION
-          family: nginx
-          cluster-name: "default"
-          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
-          
+            - aws-ecr/build_and_push_image
+          family: 'nginx-service'
+          cluster-name: 'default'
+          container-image-name-updates: 'container=nginx,tag=${CIRCLE_SHA1}'
  
