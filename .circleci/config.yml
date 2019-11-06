@@ -19,10 +19,6 @@ jobs:
           cluster-name: "default"
           container-image-name-updates: "container=nginx-service,tag=${CIRCLE_SHA1}"
 workflows:
-  deploy:
-    jobs:
-      - update-tag
-workflows:
   build-and-deploy:
     jobs:
       - aws-ecr/build_and_push_image:
