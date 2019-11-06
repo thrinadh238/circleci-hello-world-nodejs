@@ -6,16 +6,16 @@ orbs:
   aws-ecs: circleci/aws-ecs@0.0.15
 jobs:
   update-tag:
-    docker:
-      - image: 'circleci/python:3.7.1'
-    steps:
-      - aws-cli/install
-      - aws-cli/configure:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-region: AWS_DEFAULT_REGION
-      - run: 
-           command: |
-             aws s3 ls
+     executor:
+     steps:
+      - checkout
+      - aws-cli/setup:
+          aws-access-key-id: 'AWS_ACCESS_KEY_ID'
+          aws-secret-access-key:  'AWS_SECRET_ACCESS_KEY'
+          aws-region: 'AWS_DEFAULT_REGION'
+      - run:
+          command: |
+            aws s3 ls
       
 workflows:
   build-and-deploy:
