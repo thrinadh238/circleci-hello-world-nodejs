@@ -13,7 +13,7 @@ jobs:
           cluster: default
           task-definition: myapp
           subnet-ids: 'subnet-0f326b3a78edeb6f4, subnet-0cdaba8b752b74abd'
-          security-group-ids: sg-0aad8ddad4603269c,sg-087086bd834b7fde6
+          security-group-ids: sg-0aad8ddad4603269c
   run-task2:
     docker:
       - image: '$AWS_ECR_URL/nodejs:${CIRCLE_SHA1}'
@@ -22,7 +22,7 @@ jobs:
           cluster: default
           task-definition: nodejs
           subnet-ids: 'subnet-0f326b3a78edeb6f4, subnet-0cdaba8b752b74abd'
-          security-group-ids: sg-0aad8ddad4603269c,sg-087086bd834b7fde6
+          security-group-ids: sg-0aad8ddad4603269c
 workflows:
   deployment:
     jobs:
