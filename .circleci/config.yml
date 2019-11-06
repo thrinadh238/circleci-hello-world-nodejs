@@ -5,7 +5,7 @@ orbs:
   aws-ecr: circleci/aws-ecr@3.1.0
   aws-ecs: circleci/aws-ecs@0.0.22
 jobs:
-  run-task:
+  run-task1:
     docker:
       - image: '$AWS_ECR_URL/nginx:${CIRCLE_SHA1}'
     steps:
@@ -50,7 +50,7 @@ workflows:
           dockerfile: ~/project/containers/nodejs/Dockerfile
           path: ~/project/containers/nodejs
           tag: ${CIRCLE_SHA1}
-      - run-task:
+      - run-task1:
           requires:
             - build-and-push-nginx-image
       - run-task2:
