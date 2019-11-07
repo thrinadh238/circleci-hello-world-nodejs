@@ -3,7 +3,7 @@
     "taskDefinition": "sample-fargate:1",
     "loadBalancers": [
         {
-            "loadBalancerName": "fargate-nginx",
+            "targetGroupArn": "arn:aws:elasticloadbalancing:us-west-1:543512271426:targetgroup/ecs-fargate/10d62bcc770cc0ca",
             "containerName": "fargate-app",
             "containerPort": 80
         }
