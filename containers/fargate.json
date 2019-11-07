@@ -39,6 +39,6 @@
         "FARGATE"
     ], 
     "cpu": "256",
-    "ExecutionRoleArn": "arn:aws:iam::543512271426:role/ecs-task-execution-for-ecs-fargate",
+    "executionRoleArn": "arn:aws:iam::543512271426:role/ecs-task-execution-for-ecs-fargate",
     "memory": "512"
 }
