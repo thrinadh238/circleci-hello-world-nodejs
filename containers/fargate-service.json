@@ -9,5 +9,4 @@
         }
     ],
     "desiredCount": 1,
-    "role": "ecsServiceRole"
 }
