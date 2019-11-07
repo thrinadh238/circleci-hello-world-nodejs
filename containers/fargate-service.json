@@ -5,7 +5,7 @@
     "subnets": ["subnet-0f326b3a78edeb6f4"],
     "securityGroups": ["sg-087086bd834b7fde6"],
     "assignPublicIp": "ENABLED"
-  }
+  },
     "loadBalancers": [
         {
             "loadBalancerName": "fargate-nginx",
