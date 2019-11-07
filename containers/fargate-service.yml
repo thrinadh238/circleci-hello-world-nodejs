@@ -1,0 +1,13 @@
+{
+    "serviceName": "nginx",
+    "taskDefinition": "sample-fargate:1",
+    "loadBalancers": [
+        {
+            "loadBalancerName": "fargate-nginx",
+            "containerName": "nginx",
+            "containerPort": 80
+        }
+    ],
+    "desiredCount": 1,
+    "role": "ecsServiceRole"
+}
