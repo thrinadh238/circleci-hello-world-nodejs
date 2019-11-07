@@ -8,7 +8,7 @@ jobs:
       - run: aws ecs create-service --cluster default --service-name nginx --task-definition sample-fargate:1 --desired-count 2 --launch-type "FARGATE" --network-configuration "awsvpcConfiguration={subnets=[subnet-0f326b3a78edeb6f4],securityGroups=[sg-087086bd834b7fde6]}"
       - run:
           command: |
-            aws ecs list-services --cluster default && aws ecs list-task-definitions      
+            aws ecs list-services --cluster default && aws ecs list-task-definitions && aws ecs describe-services --cluster default --services nginx
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@3.1.0
