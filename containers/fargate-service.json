@@ -8,5 +8,5 @@
             "containerPort": 80
         }
     ],
-    "desiredCount": 1,
+    "desiredCount": 2
 }
