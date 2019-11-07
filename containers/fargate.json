@@ -1,0 +1,35 @@
+[
+    {
+      "name": "nginx",
+      "image": "543512271426.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ]
+    }
+    {
+      "name": "python",
+      "image": "543512271426.dkr.ecr.ap-south-1.amazonaws.com/python:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "containerPort": 5000
+        }
+      ]
+    }
+    {
+      "name": "nodejs",
+      "image": "543512271426.dkr.ecr.ap-south-1.amazonaws.com/nodejs:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "protocol": "tcp",
+          "containerPort": 8000
+        }
+      ]
+    }
+  ]
