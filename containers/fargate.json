@@ -1,5 +1,6 @@
 {
     "family": "sample-fargate",
+    "networkMode": "awsvpc",
     "containerDefinitions": [
         {
             "name": "fargate-app", 
