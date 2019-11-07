@@ -2,8 +2,8 @@
     "serviceName": "nginx",
     "taskDefinition": "sample-fargate:1",
     "awsvpcConfiguration": {
-    "subnets": [subnet-0f326b3a78edeb6f4],
-    "securityGroups": [sg-087086bd834b7fde6],
+    "subnets": ["subnet-0f326b3a78edeb6f4"],
+    "securityGroups": ["sg-087086bd834b7fde6"],
     "assignPublicIp": "ENABLED"
   }
     "loadBalancers": [
