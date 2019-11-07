@@ -1,11 +1,11 @@
 {
     "family": "sample-fargate", 
     "networkMode": "awsvpc",
-    "ExecutionRoleArn": "arn:aws:iam::543512271426:role/ecs-task-execution-for-ecs-fargate",
     "containerDefinitions": [
         {
             "name": "fargate-app", 
-            "image": "543512271426.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest", 
+            "image": "543512271426.dkr.ecr.ap-south-1.amazonaws.com/nginx:latest",
+            "ExecutionRoleArn": "arn:aws:iam::543512271426:role/ecs-task-execution-for-ecs-fargate",
             "portMappings": [
                 {
                     "containerPort": 80, 
@@ -17,6 +17,7 @@
         {
             "name": "python",
             "image": "543512271426.dkr.ecr.ap-south-1.amazonaws.com/python:latest",
+            "ExecutionRoleArn": "arn:aws:iam::543512271426:role/ecs-task-execution-for-ecs-fargate",
             "essential": true,
             "portMappings": [
               {
@@ -28,6 +29,7 @@
           {
             "name": "nodejs",
             "image": "543512271426.dkr.ecr.ap-south-1.amazonaws.com/nodejs:latest",
+            "ExecutionRoleArn": "arn:aws:iam::543512271426:role/ecs-task-execution-for-ecs-fargate",
             "essential": true,
             "portMappings": [
               {
