@@ -4,9 +4,10 @@ jobs:
       - image: mesosphere/aws-cli
      steps:
       - checkout
+      - run: cd containers && echo $CIRCLE_SHA1 && sed -i -e "s/latest/${CIRCLE_SHA1}/g" fargate.json && aws ecs register-task-definition --cli-input-json fargate.json
       - run:
           command: |
-            aws ecs list-services --cluster default      
+            aws ecs list-services --cluster default && aws ecs list-task-definitions      
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@3.1.0
