@@ -1,7 +1,6 @@
 {
     "family": "sample-fargate",
     "networkMode": "awsvpc",
-    "assignPublicIp": "ENABLED",
     "containerDefinitions": [
         {
             "name": "fargate-app", 
