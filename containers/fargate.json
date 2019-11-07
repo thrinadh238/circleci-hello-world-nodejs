@@ -9,7 +9,7 @@
           "containerPort": 80
         }
       ]
-    }
+    },
     {
       "name": "python",
       "image": "543512271426.dkr.ecr.ap-south-1.amazonaws.com/python:latest",
@@ -20,7 +20,7 @@
           "containerPort": 5000
         }
       ]
-    }
+    },
     {
       "name": "nodejs",
       "image": "543512271426.dkr.ecr.ap-south-1.amazonaws.com/nodejs:latest",
