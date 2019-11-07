@@ -9,7 +9,7 @@
     "loadBalancers": [
         {
             "loadBalancerName": "fargate-nginx",
-            "containerName": "nginx",
+            "containerName": "fargate-app",
             "containerPort": 80
         }
     ],
