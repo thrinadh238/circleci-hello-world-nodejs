@@ -44,4 +44,5 @@ workflows:
       - update-tag:
           requires:
             - build-and-push-nginx-image
- 
+            - build-and-push-python-image
+            - build-and-push-nodejs-image
