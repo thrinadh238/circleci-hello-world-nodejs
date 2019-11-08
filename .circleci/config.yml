@@ -4,7 +4,7 @@ jobs:
       - image: mesosphere/aws-cli
      steps:
       - checkout
-      - run: pwd && cd containers && echo $CIRCLE_SHA1 && sed -i -e "s/latest/${CIRCLE_SHA1}/g" fargate.json && aws ecs register-task-definition --cli-input-json file:///root/project/containers/fargate.json
+      - run: cd containers && echo $CIRCLE_SHA1 && sed -i -e "s/latest/${CIRCLE_SHA1}/g" fargate.json && aws ecs register-task-definition --cli-input-json file:///root/project/containers/fargate.json
       - run: aws ecs create-service --cluster default --service-name nginx --task-definition sample-fargate --launch-type "FARGATE"  --network-configuration "awsvpcConfiguration={subnets=[subnet-0e4881f20a15bb666],securityGroups=[sg-0e11ea763d1da77fe],assignPublicIp=ENABLED}" --cli-input-json file:///root/project/containers/fargate-service.json
       - run:
           command: |
