@@ -12,5 +12,5 @@
             "maximumPercent": 200,
             "minimumHealthyPercent": 100
         },
-    "desiredCount": 2
+    "desiredCount": 1
 }
