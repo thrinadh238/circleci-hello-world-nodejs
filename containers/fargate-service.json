@@ -20,6 +20,6 @@
         }
      ],
     "healthCheckGracePeriodSeconds": 10,
-    "schedulingStrategy": "REPLICA"
+    "schedulingStrategy": "REPLICA",
     "desiredCount": 2
 }
