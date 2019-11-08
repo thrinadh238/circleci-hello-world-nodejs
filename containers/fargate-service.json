@@ -14,12 +14,5 @@
             "minimumHealthyPercen": 100
         }
      ],
-    "deploymentController": [
-        {
-            "type": "ECS"
-        }
-     ],
-    "healthCheckGracePeriodSeconds": 10,
-    "schedulingStrategy": "REPLICA",
     "desiredCount": 2
 }
