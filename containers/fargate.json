@@ -23,17 +23,6 @@
                 "containerPort": 5000
               }
             ]
-          },
-          {
-            "name": "nodejs",
-            "image": "543512271426.dkr.ecr.us-west-1.amazonaws.com/nodejs:latest",
-            "essential": true,
-            "portMappings": [
-              {
-                "protocol": "tcp",
-                "containerPort": 8000
-              }
-            ]
           }
     ], 
     "requiresCompatibilities": [
