@@ -10,7 +10,7 @@
     ],
     "deploymentConfiguration": [
         {
-            "maximumPercent": 200
+            "maximumPercent": 200,
             "minimumHealthyPercen": 100
         }
      ],
