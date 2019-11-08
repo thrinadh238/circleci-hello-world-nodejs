@@ -5,8 +5,21 @@
         {
             "targetGroupArn": "arn:aws:elasticloadbalancing:us-west-1:543512271426:targetgroup/ecs-fargate/10d62bcc770cc0ca",
             "containerName": "fargate-app",
-            "containerPort": 80
+            "containerPort": 80   
         }
     ],
+    "deploymentConfiguration": [
+        {
+            "maximumPercent": 200
+            "minimumHealthyPercen": 100
+        }
+     ],
+    "deploymentController": [
+        {
+            "type": "ECS"
+        }
+     ],
+    "healthCheckGracePeriodSeconds": 10,
+    "schedulingStrategy": "REPLICA"
     "desiredCount": 2
 }
