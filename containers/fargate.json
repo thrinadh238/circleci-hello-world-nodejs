@@ -41,5 +41,5 @@
     ], 
     "cpu": "2048",
     "executionRoleArn": "arn:aws:iam::543512271426:role/ecs-task-execution-for-ecs-fargate",
-    "memory": "4096"
+    "memory": "6144"
 }
