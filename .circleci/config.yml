@@ -5,7 +5,7 @@ jobs:
      steps:
       - checkout
       - run: cd containers && echo $CIRCLE_SHA1 && pwd && sed -i -e "s/latest/${CIRCLE_SHA1}/g" fargate.json && aws ecs register-task-definition --cli-input-json file:///root/project/containers/fargate.json
-      - run: aws ecs create-service --cluster default --service-name nginx --task-definition sample-fargate --launch-type "FARGATE"  --network-configuration "awsvpcConfiguration={subnets=[${AWS_SUBNET_ID}],securityGroups=[sg-0e11ea763d1da77fe],assignPublicIp=ENABLED}" --cli-input-json file:///root/project/containers/fargate-service.json
+      - run: sh /root/project/containers/fargate-service.sh
       - run:
           command: |
             aws ecs list-services --cluster default && aws ecs list-task-definitions && aws ecs describe-services --cluster default --services nginx
