@@ -5,7 +5,7 @@ jobs:
      steps:
       - checkout
       - run: cd containers && echo $CIRCLE_SHA1 && pwd && sed -i -e "s/latest/${CIRCLE_SHA1}/g" fargate.json && aws ecs register-task-definition --cli-input-json file:///root/project/containers/fargate.json
-      - run: cd /root/project/containers && chmod +x fargate-service.sh && sh fargate-service.sh
+      - run: cd /root/project/containers && chmod +x fargate-service.sh && bash fargate-service.sh
       - run:
           command: |
             aws ecs list-services --cluster default && aws ecs list-task-definitions && aws ecs describe-services --cluster default --services nginx
