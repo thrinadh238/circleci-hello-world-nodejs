@@ -1,8 +1,8 @@
 #!/bin/sh
 # set -o errexit
 
-case "$(aws ecs list-services --cluster default 2> /dev/null | grep serviceArn)" in
-    *serviceArn*)
+case "$(aws ecs list-services --cluster default --output=text 2> /dev/null | grep serviceArn)" in
+    *SERVICEARNS*)
 	    echo "ServiceArn Exists"
         ;;
      *)
